@@ -1,16 +1,160 @@
-<!-- index.html --> 
-<!DOCTYPE html> 
-<html> 
-  <head> 
-    <title>Édition de facture et devis</title>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edition de Devis/Facture</title>
     <link rel="icon" type="image/png" href="https://airsoundlocation.ch/wp-content/uploads/2021/12/cropped-favicon.png">
-    <title>My Website</title> 
-  </head> 
-  <body> 
-    <h1>Welcome to the invoice creator</h1> 
-    <p>Here you can learn more about my work and contact me.</p> 
-    <p> 
-      <a href="contact.html">Contact me</a> 
-    </p> 
-  </body> 
-</html> 
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(18, 18, 37);
+        }
+
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%; /* increased from 50% to 70% */
+            padding: 20px;
+        }
+
+        #choice-container {
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .btn-custom {
+            color: #fff;
+            background-color: #800FD4;
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        .btn-custom:hover {
+            background-color: #710EBB;
+        }
+
+        .clicked {
+            background-color: #710EBB;
+        }
+
+        #choice-container {
+            width: 300px;
+            margin: 0 auto;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    
+    <img src="https://airsoundlocation.ch/wp-content/uploads/2023/04/AirSoundwhite-1.png" alt="Company Logo" class="logo">
+    <div id="choice-container">
+        <div id="initial-choice">
+            <button class="btn" id="devis">Devis</button>
+            <button class="btn" id="facture">Facture</button>
+        </div>
+        <div id="secondary-choice"></div>
+        <div id="tertiary-choice"></div>
+        <div id="options-container"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const initialDiv = document.querySelector('#initial-choice');
+            const secondaryDiv = document.querySelector('#secondary-choice');
+            const tertiaryDiv = document.querySelector('#tertiary-choice');
+
+            addEventToButton('#devis', function() {
+                resetDivs([secondaryDiv, tertiaryDiv]);
+                secondaryDiv.innerHTML = `
+                    <button class="btn btn-custom btn-lg btn-block" id="with-total"><i class="bi bi-check2-square"></i> Avec Total</button>
+                    <button class="btn btn-custom btn-lg btn-block" id="without-total"><i class="bi bi-square"></i> Sans Total</button>
+                `;
+                addEventToButton('#without-total', function() {
+                    window.open('https://docs.google.com/document/d/1VlrvgqlgyZPUUXBbOpvU2jNcNJGFeIqTFNCcgHY5ySM/edit?usp=drive_link');
+                });
+                addEventToButton('#with-total', createDeliveryOptions);
+            });
+
+            addEventToButton('#facture', function() {
+                resetDivs([secondaryDiv, tertiaryDiv]);
+                createDeliveryOptions();
+            });
+
+            function addEventToButton(id, callback) {
+                const button = document.querySelector(id);
+                button.addEventListener('click', function() {
+                    unclickAll(initialDiv);
+                    this.classList.add('clicked');
+                    callback();
+                });
+            }
+
+            function createDeliveryOptions() {
+                secondaryDiv.innerHTML = `
+                    <button class="btn btn-custom btn-lg btn-block" id="with-delivery"><i class="bi bi-truck"></i> Avec Livraison</button>
+                    <button class="btn btn-custom btn-lg btn-block" id="without-delivery"><i class="bi bi-truck"></i> Sans Livraison</button>
+                `;
+                addEventToDeliveryOptions();
+            }
+
+            function addEventToDeliveryOptions() {
+                const options = document.querySelectorAll('#secondary-choice button');
+                options.forEach((option) => {
+                    option.addEventListener('click', function() {
+                        unclickAll(secondaryDiv);
+                        this.classList.add('clicked');
+                        createPackEventOptions();
+                    });
+                });
+            }
+
+            function createPackEventOptions() {
+                tertiaryDiv.innerHTML = `
+                    <button class="btn btn-custom btn-lg btn-block" id="perso"><i class="bi bi-person-square"></i> Formule Perso</button>
+                    <button class="btn btn-custom btn-lg btn-block" id="pack"><i class="bi bi-box"></i> Pack</button>
+                `;
+                addEventToPackEventOptions();
+            }
+
+            function addEventToPackEventOptions() {
+                const options = document.querySelectorAll('#tertiary-choice button');
+                options.forEach((option) => {
+                    option.addEventListener('click', function() {
+                        unclickAll(tertiaryDiv);
+                        this.classList.add('clicked');
+                        if (this.id === 'perso') {
+                            window.open('http://www.persolink.com');
+                        } else {
+                            window.open('http://www.packlink.com');
+                        }
+                    });
+                });
+            }
+
+            function unclickAll(div) {
+                const btns = div.querySelectorAll('.btn');
+                btns.forEach(btn => btn.classList.remove('clicked'));
+            }
+
+            function resetDivs(divs) {
+                divs.forEach(div => {
+                    div.innerHTML = '';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
