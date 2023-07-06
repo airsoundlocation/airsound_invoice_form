@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edition de Devis/Facture</title>
     <link rel="icon" type="image/png" href="https://airsoundlocation.ch/wp-content/uploads/2021/12/cropped-favicon.png">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Material-UI -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <script src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js"></script>
     <style>
+        .spacing { margin-bottom: 1em; }
+
         body, html {
             height: 100%;
             margin: 0;
@@ -53,22 +61,41 @@
     </style>
 </head>
 <body>
-    <!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-    
-    <img src="https://airsoundlocation.ch/wp-content/uploads/2023/04/AirSoundwhite-1.png" alt="Company Logo" class="logo">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+
+    <div style="text-align: center; margin-bottom: 40px; margin-top: 60px;">
+        <img src="https://airsoundlocation.ch/wp-content/uploads/2023/04/AirSoundwhite-1.png" alt="Airsound Logo" width="200">
+    </div>
+
+    <form id="emailForm" onsubmit="" style="max-width: 400px; margin: auto; font-family: Roboto, sans-serif;">
+        <div style="display: flex; flex-direction: column; gap: 15px">
+
+            <div style="margin-top: 20px;">
+                <label>Civilité :</label>
+                <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px; margin-bottom: 10px;">
+                    <div>
+                        <input type="radio" id="male" name="gender" value="Monsieur" checked>
+                        <label for="male">Monsieur</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="female" name="gender" value="Madame">
+                        <label for="female">Madame</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="unspecified" name="gender" value="">
+                        <label for="unspecified">Autre</label>
+                    </div>
+                </div>
+            </div>
+    </form>
     <div id="choice-container">
         <div id="initial-choice">
-            <button class="btn" id="devis">Devis</button>
-            <button class="btn" id="facture">Facture</button>
+            <button class="btn btn-custom btn-lg btn-block" id="devis"><i class="bi bi-file-earmark-text"></i> Devis</button>
+            <button class="btn btn-custom btn-lg btn-block" id="facture"><i class="bi bi-file-earmark-check"></i> Facture</button>
         </div>
         <div id="secondary-choice"></div>
         <div id="tertiary-choice"></div>
-        <div id="options-container"></div>
+    </div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
