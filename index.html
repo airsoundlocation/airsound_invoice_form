@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edition de Devis/Facture</title>
-    <link rel="icon" type="image/png" href="https://airsoundlocation.ch/wp-content/uploads/2021/12/cropped-favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Material-UI -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <script src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
-        .spacing { margin-bottom: 1em; }
-
         body, html {
             height: 100%;
             margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             background-color: rgb(18, 18, 37);
+        }
+
+
+        input[type="radio"]:not(:checked) + span::after {
+            background-color: white;
+        }
+        input[type="radio"]:not(:checked) + span::before {
+            border: 2px solid white;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid lightgrey;
+            width: 200px;
         }
 
         .logo {
@@ -29,158 +31,127 @@
             width: 50%; /* increased from 50% to 70% */
             padding: 20px;
         }
-
-        #choice-container {
-            width: 300px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .btn-custom {
-            color: #fff;
-            background-color: #800FD4;
-            border: none;
-            margin-bottom: 10px;
-        }
-
-        .btn-custom:hover {
-            background-color: #710EBB;
-        }
-
-        .clicked {
-            background-color: #710EBB;
-        }
-
-        #choice-container {
-            width: 300px;
-            margin: 0 auto;
-            margin-top: 50px;
-            text-align: center;
-        }
-
     </style>
 </head>
 <body>
-    <div style="display: flex; flex-direction: column; align-items: center;">
-
     <div style="text-align: center; margin-bottom: 40px; margin-top: 60px;">
+        <br>
         <img src="https://airsoundlocation.ch/wp-content/uploads/2023/04/AirSoundwhite-1.png" alt="Airsound Logo" width="200">
+        <br>
+        <br>
+        <br>
+        <h5 style="font-family: 'Poppins', sans-serif; font-weight: 200; color: white;">Sélectionne un type de document à produire :</h5>
     </div>
-
-    <form id="emailForm" onsubmit="" style="max-width: 400px; margin: auto; font-family: Roboto, sans-serif;">
-        <div style="display: flex; flex-direction: column; gap: 15px">
-
-            <div style="margin-top: 20px;">
-                <label>Civilité :</label>
-                <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px; margin-bottom: 10px;">
-                    <div>
-                        <input type="radio" id="male" name="gender" value="Monsieur" checked>
-                        <label for="male">Monsieur</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="female" name="gender" value="Madame">
-                        <label for="female">Madame</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="unspecified" name="gender" value="">
-                        <label for="unspecified">Autre</label>
-                    </div>
-                </div>
+    <div class="container" style="display: flex; justify-content: center;">
+        <form action="#" id="radioForm" style="text-align: center;">
+            <div id="group1" style="display: inline-block;">
+                <p>
+                    <label>
+                        <input class="with-gap" name="group1" type="radio" value="facture" />
+                        <span style="color:white">Facture</span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input class="with-gap" name="group1" type="radio" value="devis" />
+                        <span style="color:white" >Devis</span>
+                    </label>
+                </p>
             </div>
-    </form>
-    <div id="choice-container">
-        <div id="initial-choice">
-            <button class="btn btn-custom btn-lg btn-block" id="devis"><i class="bi bi-file-earmark-text"></i> Devis</button>
-            <button class="btn btn-custom btn-lg btn-block" id="facture"><i class="bi bi-file-earmark-check"></i> Facture</button>
-        </div>
-        <div id="secondary-choice"></div>
-        <div id="tertiary-choice"></div>
+            <hr id="hr1" style="display: none;">
+            <div id="group2" style="display: none;">
+                <p>
+                    <label>
+                        <input class="with-gap" name="group2" type="radio" value="avec" />
+                        <span style="color:white" >Évènement</span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input class="with-gap" name="group2" type="radio" value="sans" />
+                        <span style="color:white" >Pack simple</span>
+                    </label>
+                </p>
+            </div>
+            <hr id="hr2" style="display: none;">
+            <div id="group3" style="display: none;">
+                <p>
+                    <label>
+                        <input class="with-gap" name="group3" type="radio" value="event" />
+                        <span style="color:white" >Avec Livraison 🚚</span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input class="with-gap" name="group3" type="radio" value="pack" />
+                        <span style="color:white" >Sans Livraison</span>
+                    </label>
+                </p>
+            </div>
+            <div>
+                <button class="btn waves-effect waves-light" type="submit" name="action" id="submitButton" style="display: none;">Open</button>
+            </div>
+        </form>
     </div>
-    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const initialDiv = document.querySelector('#initial-choice');
-            const secondaryDiv = document.querySelector('#secondary-choice');
-            const tertiaryDiv = document.querySelector('#tertiary-choice');
+        const form = document.getElementById('radioForm');
+        const submitButton = document.getElementById('submitButton');
 
-            addEventToButton('#devis', function() {
-                resetDivs([secondaryDiv, tertiaryDiv]);
-                secondaryDiv.innerHTML = `
-                    <button class="btn btn-custom btn-lg btn-block" id="with-total"><i class="bi bi-check2-square"></i> Avec Total</button>
-                    <button class="btn btn-custom btn-lg btn-block" id="without-total"><i class="bi bi-square"></i> Sans Total</button>
-                `;
-                addEventToButton('#without-total', function() {
-                    window.open('https://docs.google.com/document/d/1VlrvgqlgyZPUUXBbOpvU2jNcNJGFeIqTFNCcgHY5ySM/edit?usp=drive_link');
-                });
-                addEventToButton('#with-total', createDeliveryOptions);
+        const linkMap = {
+            'facture_avec_event': 'https://docs.google.com/document/d/1tSxb2ljClVxrBjACM-u43sOdt7AN4fECaEReEiWbTj4/edit?usp=drive_link',
+            'facture_avec_pack': 'https://docs.google.com/document/d/1wKcfKmD5oIuoUvexmWwEiZ8YnWrfVSDX2vATc1ZvyV0/edit?usp=drive_link',
+            'facture_sans_event': 'https://docs.google.com/document/d/16W8_pgCM-uRaB7235txyKehd81uAOdV-G6t2J0jUjQk/edit?usp=drive_link',
+            'facture_sans_pack': 'https://docs.google.com/document/d/1uGny0TXL9_3NMFFFSZzBUxwRrMvLxC7Q7Qy8jvxbaCc/edit?usp=drive_link',
+            'devis_avec_event': 'https://docs.google.com/document/d/122xApgf-XXjLwyQmBIRaPa-HAEIrFWhy_cfZRVg3874/edit?usp=drive_link',
+            'devis_avec_pack': 'https://docs.google.com/document/d/1Bt629fC_V_us5dZ5uqvKFwuymYjbZFGzyoEc_1yUtRQ/edit?usp=drive_link',
+            'devis_sans_event': 'https://docs.google.com/document/d/1JL6LMTjkpaCM89k5pA7kPfPACi5ivHFKKxuGKDn7s2s/edit?usp=drive_link',
+            'devis_sans_pack': 'https://docs.google.com/document/d/1ru__nHy_OAgfe2JJCIN2hZJyVnnHEN4KToJUnwgOYpI/edit?usp=drive_link',
+        }
+
+        function checkAllRadioButtonsSelected() {
+            const group1Selected = document.querySelector('input[name="group1"]:checked');
+            const group2Selected = document.querySelector('input[name="group2"]:checked');
+            const group3Selected = document.querySelector('input[name="group3"]:checked');
+            
+            if (group1Selected && group2Selected && group3Selected) {
+                submitButton.style.display = 'inline-block';
+            }
+        }
+
+        document.querySelectorAll('input[name="group1"]').forEach((elem) => {
+            elem.addEventListener("change", function() {
+                document.getElementById("group2").style.display = "inline-block";
+                document.getElementById("hr1").style.display = "";
+                checkAllRadioButtonsSelected();
             });
+        });
 
-            addEventToButton('#facture', function() {
-                resetDivs([secondaryDiv, tertiaryDiv]);
-                createDeliveryOptions();
+        document.querySelectorAll('input[name="group2"]').forEach((elem) => {
+            elem.addEventListener("change", function() {
+                document.getElementById("group3").style.display = "inline-block";
+                document.getElementById("hr2").style.display = "";
+                checkAllRadioButtonsSelected();
             });
+        });
 
-            function addEventToButton(id, callback) {
-                const button = document.querySelector(id);
-                button.addEventListener('click', function() {
-                    unclickAll(initialDiv);
-                    this.classList.add('clicked');
-                    callback();
-                });
-            }
+        document.querySelectorAll('input[name="group3"]').forEach((elem) => {
+            elem.addEventListener("change", function() {
+                checkAllRadioButtonsSelected();
+            });
+        });
 
-            function createDeliveryOptions() {
-                secondaryDiv.innerHTML = `
-                    <button class="btn btn-custom btn-lg btn-block" id="with-delivery"><i class="bi bi-truck"></i> Avec Livraison</button>
-                    <button class="btn btn-custom btn-lg btn-block" id="without-delivery"><i class="bi bi-truck"></i> Sans Livraison</button>
-                `;
-                addEventToDeliveryOptions();
-            }
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
 
-            function addEventToDeliveryOptions() {
-                const options = document.querySelectorAll('#secondary-choice button');
-                options.forEach((option) => {
-                    option.addEventListener('click', function() {
-                        unclickAll(secondaryDiv);
-                        this.classList.add('clicked');
-                        createPackEventOptions();
-                    });
-                });
-            }
+            let group1 = document.querySelector('input[name="group1"]:checked').value;
+            let group2 = document.querySelector('input[name="group2"]:checked').value;
+            let group3 = document.querySelector('input[name="group3"]:checked').value;
 
-            function createPackEventOptions() {
-                tertiaryDiv.innerHTML = `
-                    <button class="btn btn-custom btn-lg btn-block" id="perso"><i class="bi bi-person-square"></i> Formule Perso</button>
-                    <button class="btn btn-custom btn-lg btn-block" id="pack"><i class="bi bi-box"></i> Pack</button>
-                `;
-                addEventToPackEventOptions();
-            }
-
-            function addEventToPackEventOptions() {
-                const options = document.querySelectorAll('#tertiary-choice button');
-                options.forEach((option) => {
-                    option.addEventListener('click', function() {
-                        unclickAll(tertiaryDiv);
-                        this.classList.add('clicked');
-                        if (this.id === 'perso') {
-                            window.open('http://www.persolink.com');
-                        } else {
-                            window.open('http://www.packlink.com');
-                        }
-                    });
-                });
-            }
-
-            function unclickAll(div) {
-                const btns = div.querySelectorAll('.btn');
-                btns.forEach(btn => btn.classList.remove('clicked'));
-            }
-
-            function resetDivs(divs) {
-                divs.forEach(div => {
-                    div.innerHTML = '';
-                });
-            }
+            let key = group1 + '_' + group2 + '_' + group3;
+            let link = linkMap[key];
+            window.open(link, '_blank');
         });
     </script>
 </body>
